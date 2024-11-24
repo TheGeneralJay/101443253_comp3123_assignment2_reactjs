@@ -1,15 +1,20 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
+    // Navigator.
+    const navigate = useNavigate();
+
     const handleSubmit = (e) => {
         e.preventDefault();
 
         signup();
+        navigate("/login");
     }
 
     const signup = () => {
@@ -19,7 +24,6 @@ const Signup = () => {
             "password": password
         }
 
-        console.log(user);
         axios.post("/api/v1/user/signup", user);
     }
 
