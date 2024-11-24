@@ -8,12 +8,17 @@ const Signup = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        signup();
+    }
+
+    const signup = () => {
         let user = {
             "username": username,
             "email": email,
             "password": password
         }
-        
+
         console.log(user);
         axios.post("/api/v1/user/signup", user);
     }
