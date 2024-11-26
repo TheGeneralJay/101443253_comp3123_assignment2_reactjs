@@ -1,18 +1,20 @@
-import React, { useEffect, useState } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Routes, Route } from "react-router-dom";
 import Login from "./components/Login";
 import Home from "./components/Home";
 import Signup from "./components/Signup";
+import EmployeeManagement from "./components/employees/EmployeeManagement";
 
 const App = () => {
   return (
-    <BrowserRouter>
+    <div>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/employees" element={<EmployeeManagement />} />
       </Routes>
-    </BrowserRouter>
+    </div>
   );
 };
 

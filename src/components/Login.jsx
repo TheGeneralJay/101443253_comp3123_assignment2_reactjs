@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+
 
 const Login = () => {
     const [email, setEmail] = useState("");
@@ -11,8 +12,13 @@ const Login = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        // Remove existing localStorage.
+        localStorage.clear();
 
         login();
+        
+        localStorage.setItem("email", email);
+        // Redirect to home.
         navigate("/");
     }
 
@@ -21,7 +27,7 @@ const Login = () => {
             "email": email,
             "password": password
         }
-        
+
         axios.post("/api/v1/user/login", user);
     }
 
@@ -45,7 +51,7 @@ const Login = () => {
                 />
             </label>
 
-            <input type="submit" value="Sign Up" />
+            <input type="submit" value="Login" />
         </form>
     );
 }
