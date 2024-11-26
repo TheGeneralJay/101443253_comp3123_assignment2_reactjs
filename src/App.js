@@ -5,6 +5,7 @@ import Home from "./components/Home";
 import Signup from "./components/Signup";
 import EmployeeManagement from "./components/employees/EmployeeManagement";
 import DeleteEmployee from "./components/employees/DeleteEmployee";
+import AddEmployee from "./components/employees/AddEmployee";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const App = () => {
@@ -16,6 +17,7 @@ const App = () => {
         <Route path="/signup" element={<Signup />} />
         <Route path="/employees" element={<EmployeeManagement />} />
         <Route path="/employees/delete/:id" element={<DeleteEmployee />} />
+        <Route path="/employees/add" element={<AddEmployee />} />
       </Routes>
     </div>
   );

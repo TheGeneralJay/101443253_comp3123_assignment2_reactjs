@@ -20,8 +20,12 @@ const EmployeeManagement = () => {
         });
     }
 
-    const goToDeleteEmployee = (emp) => {
+    const handleGoToDeleteEmployee = (emp) => {
         navigate(`/employees/delete/${emp._id}`, { state: emp });
+    }
+
+    const handleGoToAddEmployee = () => {
+        navigate("/employees/add");
     }
 
     return (
@@ -45,44 +49,18 @@ const EmployeeManagement = () => {
                             <td>
                                 <Button variant="info">View Employee</Button>
                                 <Button variant="secondary">Update Employee</Button>
-                                <Button variant="danger" onClick={() => goToDeleteEmployee(emp)}>Delete Employee</Button>
+                                <Button variant="danger" onClick={() => handleGoToDeleteEmployee(emp)}>Delete Employee</Button>
                             </td>
                         </tr>
                     )}
+                    <tr>
+                        <td colSpan={5}>
+                            <Button variant="success" onClick={handleGoToAddEmployee}>Add Employee</Button>
+                        </td>
+                    </tr>
                 </tbody>
             </Table>
     );
 }
 
 export default EmployeeManagement;
-
-// import React, { useEffect, useState } from "react";
-// import axios from "axios";
-
-// const EmployeeManagement = () => {
-//     const [employees, setEmployees] = useState([{}]);
-
-//     const employee = {
-//       first_name: "Sam",
-//       last_name: "Relius",
-//       email: "samrel@email.com",
-//       position: "Roboticist",
-//       salary: 100,
-//       date_of_joining: "2023-08-10T00:00:00.000Z",
-//       department: "Medical",
-//     };
-  
-//     const getEmployees = () => {
-//       axios.get("/api/v1/emp/employees").then((res) => {
-//         console.log(res.data);
-//       });
-//     };
-  
-//     const postEmployee = () => {
-//       axios.post("/api/v1/emp/employees", employee).then((res) => {
-//         console.log(res.data);
-//       });
-//     };
-// }
-
-// export default EmployeeManagement;
