@@ -10,7 +10,7 @@ const EmployeeManagement = () => {
 
     useEffect(() => {
         getEmployees();
-    }, []);
+    });
 
     // Grab employees from the database.
     const getEmployees = async () => {
@@ -28,7 +28,13 @@ const EmployeeManagement = () => {
         navigate("/employees/add");
     }
 
+    const handleViewEmployee = (emp) => {
+        navigate(`/employees/${emp._id}`, { state: emp });
+    }
+
     return (
+        <>
+            <h1>Employees</h1>
             <Table striped bordered hover variant="dark" >
                 <thead>
                     <tr>
@@ -47,7 +53,7 @@ const EmployeeManagement = () => {
                             <td>{emp.email}</td>
                             <td>{emp.position}</td>
                             <td>
-                                <Button variant="info">View Employee</Button>
+                                <Button variant="info" onClick={() => handleViewEmployee(emp)}>View Employee</Button>
                                 <Button variant="secondary">Update Employee</Button>
                                 <Button variant="danger" onClick={() => handleGoToDeleteEmployee(emp)}>Delete Employee</Button>
                             </td>
@@ -60,6 +66,7 @@ const EmployeeManagement = () => {
                     </tr>
                 </tbody>
             </Table>
+            </>
     );
 }
 

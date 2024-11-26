@@ -30,6 +30,9 @@ const DeleteEmployee = () => {
                         <th>Full Name</th>
                         <th>Email</th>
                         <th>Position</th>
+                        <th>Salary</th>
+                        <th>Date of Joining</th>
+                        <th>Department</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -38,9 +41,12 @@ const DeleteEmployee = () => {
                         <td>{emp.first_name} {emp._last_name}</td>
                         <td>{emp.email}</td>
                         <td>{emp.position}</td>
+                        <td>{emp.salary}</td>
+                        <td>{emp.date_of_joining}</td>
+                        <td>{emp.department}</td>
                     </tr>
                     <tr>
-                        <td colSpan={4}>
+                        <td colSpan={7}>
                             <Button variant="secondary" onClick={handleBack}>Back</Button>
                             <Button variant="danger" onClick={handleDeleteEmployee}>Delete Employee</Button>
                         </td>
