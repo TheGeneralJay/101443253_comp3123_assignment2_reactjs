@@ -12,7 +12,7 @@ const ViewEmployee = () => {
     const handleBack = () => {
         navigate("/employees");
     }
-
+    
     return (
         <Table striped bordered hover variant="dark" >
             <thead>
@@ -29,11 +29,11 @@ const ViewEmployee = () => {
             <tbody>
                 <tr>
                     <td>{emp._id}</td>
-                    <td>{emp.first_name} {emp._last_name}</td>
+                    <td>{emp.first_name} {emp.last_name}</td>
                     <td>{emp.email}</td>
                     <td>{emp.position}</td>
                     <td>{emp.salary}</td>
-                    <td>{emp.date_of_joining}</td>
+                    <td>{new Date(emp.date_of_joining).toLocaleDateString("en-US")}</td>
                     <td>{emp.department}</td>
                 </tr>
                 <tr>
