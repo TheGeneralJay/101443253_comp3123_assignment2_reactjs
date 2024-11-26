@@ -20,16 +20,20 @@ const EmployeeManagement = () => {
         });
     }
 
+    const handleGoToViewEmployee = (emp) => {
+        navigate(`/employees/${emp._id}`, { state: emp });
+    }
+
+    const handleGoToUpdateEmployee = (emp) => {
+        navigate(`/employees/update/${emp._id}`, { state: emp });
+    }
+
     const handleGoToDeleteEmployee = (emp) => {
         navigate(`/employees/delete/${emp._id}`, { state: emp });
     }
 
     const handleGoToAddEmployee = () => {
         navigate("/employees/add");
-    }
-
-    const handleViewEmployee = (emp) => {
-        navigate(`/employees/${emp._id}`, { state: emp });
     }
 
     return (
@@ -53,8 +57,8 @@ const EmployeeManagement = () => {
                             <td>{emp.email}</td>
                             <td>{emp.position}</td>
                             <td>
-                                <Button variant="info" onClick={() => handleViewEmployee(emp)}>View Employee</Button>
-                                <Button variant="secondary">Update Employee</Button>
+                                <Button variant="info" onClick={() => handleGoToViewEmployee(emp)}>View Employee</Button>
+                                <Button variant="secondary" onClick={() => handleGoToUpdateEmployee(emp)}>Update Employee</Button>
                                 <Button variant="danger" onClick={() => handleGoToDeleteEmployee(emp)}>Delete Employee</Button>
                             </td>
                         </tr>
