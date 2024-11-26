@@ -38,9 +38,11 @@ const EmployeeManagement = () => {
 
     return (
         <>
-            <h1>Employees</h1>
-            <Table striped bordered hover variant="dark" >
+            <Table striped bordered hover variant="dark" className="emp-list">
                 <thead>
+                    <tr>
+                        <th colSpan={5} className="emp-list-hdr">Employees</th>
+                    </tr>
                     <tr>
                         <th>ID</th>
                         <th>Full Name</th>
@@ -52,20 +54,20 @@ const EmployeeManagement = () => {
                 <tbody>
                     {employees.map((emp) => 
                         <tr>
-                            <td>{emp._id}</td>
-                            <td>{emp.first_name} {emp.last_name}</td>
-                            <td>{emp.email}</td>
-                            <td>{emp.position}</td>
-                            <td>
-                                <Button variant="info" onClick={() => handleGoToViewEmployee(emp)}>View Employee</Button>
-                                <Button variant="secondary" onClick={() => handleGoToUpdateEmployee(emp)}>Update Employee</Button>
-                                <Button variant="danger" onClick={() => handleGoToDeleteEmployee(emp)}>Delete Employee</Button>
+                            <td className="emp-info">{emp._id}</td>
+                            <td className="emp-info">{emp.first_name} {emp.last_name}</td>
+                            <td className="emp-info">{emp.email}</td>
+                            <td className="emp-info">{emp.position}</td>
+                            <td className="admin-panel">
+                                <Button className="admin-btn" variant="info" onClick={() => handleGoToViewEmployee(emp)}>View Employee</Button>
+                                <Button className="admin-btn" variant="secondary" onClick={() => handleGoToUpdateEmployee(emp)}>Update Employee</Button>
+                                <Button className="admin-btn" variant="danger" onClick={() => handleGoToDeleteEmployee(emp)}>Delete Employee</Button>
                             </td>
                         </tr>
                     )}
-                    <tr>
+                    <tr className="table-footer">
                         <td colSpan={5}>
-                            <Button variant="success" onClick={handleGoToAddEmployee}>Add Employee</Button>
+                            <Button className="footer-btn" variant="success" onClick={handleGoToAddEmployee}>Add Employee</Button>
                         </td>
                     </tr>
                 </tbody>

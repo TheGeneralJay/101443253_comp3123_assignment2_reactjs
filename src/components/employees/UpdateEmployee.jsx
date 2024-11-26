@@ -48,9 +48,13 @@ const UpdateEmployee = () => {
 
     return (
         <Form onSubmit={handleUpdateSubmit}>
+            <div className="form-hdr">
+                <h3>Update Employee Details</h3>
+                <hr />
+            </div>
             <Row>
                 <Col>
-                    <Form.Group className="mb-3">
+                    <Form.Group className="mb-3 text-input">
                         <Form.Label>First Name</Form.Label>
                         <Form.Control 
                         type="text"
@@ -60,7 +64,7 @@ const UpdateEmployee = () => {
                     </Form.Group>
                 </Col>
                 <Col>
-                    <Form.Group className="mb-3">
+                    <Form.Group className="mb-3 text-input">
                         <Form.Label>Last Name</Form.Label>
                         <Form.Control 
                         type="text"
@@ -72,7 +76,7 @@ const UpdateEmployee = () => {
             </Row>
             <Row>
                 <Col>
-                    <Form.Group className="mb-3">
+                    <Form.Group className="mb-3 text-input">
                         <Form.Label>Email</Form.Label>
                         <Form.Control 
                         type="text"
@@ -85,7 +89,7 @@ const UpdateEmployee = () => {
             </Row>
             <Row>
                 <Col>
-                    <Form.Group className="mb-3">
+                    <Form.Group className="mb-3 text-input">
                         <Form.Label>Position</Form.Label>
                         <Form.Control 
                         type="text"
@@ -96,7 +100,7 @@ const UpdateEmployee = () => {
                     </Form.Group>
                 </Col>
                 <Col>
-                    <Form.Group className="mb-3">
+                    <Form.Group className="mb-3 text-input">
                         <Form.Label>Department</Form.Label>
                         <Form.Control 
                         type="text"
@@ -107,7 +111,7 @@ const UpdateEmployee = () => {
                     </Form.Group>
                 </Col>
                 <Col>
-                    <Form.Group className="mb-3">
+                    <Form.Group className="mb-3 text-input">
                         <Form.Label>Salary</Form.Label>
                         <Form.Control 
                         type="text"
@@ -118,14 +122,21 @@ const UpdateEmployee = () => {
                     </Form.Group>
                 </Col>
                 <Col>
-                    <DatePicker 
-                    value={dateOfJoining}
-                    onChange={item => {setDateOfJoining(new Date(item))}}
-                    />
+                    <Form.Group className="date-pkr-col">
+                        <Form.Label>Date of Joining</Form.Label>
+                        <DatePicker
+                        className="date-pkr"
+                        value={dateOfJoining}
+                        onChange={item => {setDateOfJoining(new Date(item))}}
+                        />
+                    </Form.Group>
                 </Col>
             </Row>
-            <Button onClick={handleBack} variant="secondary">Back</Button>
-            <Button type="submit">Update Employee</Button>
+            <div className="form-ftr">
+                <hr />
+                <Button onClick={handleBack} className="footer-btn" variant="secondary">Back</Button>
+                <Button type="submit" className="footer-btn">Update Employee</Button>
+            </div>
         </Form>
     );
 }

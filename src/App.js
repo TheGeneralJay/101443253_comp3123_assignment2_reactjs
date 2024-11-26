@@ -8,6 +8,7 @@ import DeleteEmployee from "./components/employees/DeleteEmployee";
 import AddEmployee from "./components/employees/AddEmployee";
 import ViewEmployee from "./components/employees/ViewEmployee";
 import UpdateEmployee from "./components/employees/UpdateEmployee";
+import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const App = () => {
