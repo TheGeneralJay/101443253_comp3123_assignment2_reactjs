@@ -3,6 +3,7 @@ import Table from "react-bootstrap/Table";
 import axios from "axios";
 import  Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router-dom";
+import LoginChecker from "../authentication/LoginChecker";
 
 const EmployeeManagement = () => {
     const [employees, setEmployees] = useState([{}]);
@@ -11,6 +12,8 @@ const EmployeeManagement = () => {
     useEffect(() => {
         getEmployees();
     });
+
+    LoginChecker();
 
     // Grab employees from the database.
     const getEmployees = async () => {
