@@ -1,8 +1,8 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import Login from "./components/Login";
+import Login from "./components/authentication/Login";
 import Home from "./components/Home";
-import Signup from "./components/Signup";
+import Signup from "./components/authentication/Signup";
 import EmployeeManagement from "./components/employees/EmployeeManagement";
 import DeleteEmployee from "./components/employees/DeleteEmployee";
 import AddEmployee from "./components/employees/AddEmployee";
