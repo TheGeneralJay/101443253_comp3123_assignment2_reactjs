@@ -77,6 +77,23 @@ div>hr {
 }
 
 .form-ftr {
+  text-align: center;
   background-color: #212529;
   height: 30%;
+}
+
+.login-form {
+  width: 40%;
+}
+
+.right-btn {
+  float: right;
+}
+
+.other-option-ftr {
+  text-align: center;
+}
+
+.other-option-ftr > p {
+  margin: 10px;
 }

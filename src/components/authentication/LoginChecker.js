@@ -24,6 +24,9 @@ export default function LoginChecker() {
         if (res.data.email !== email) {
           // If the email does not match the stored variable, redirect to the login page.
           goToLogin();
+        } else {
+          // Place the username in local storage to make the home page welcoming.
+          localStorage.setItem("user", res.data.username);
         }
       });
     } catch (e) {}

@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Form from "react-bootstrap/Form";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
+import Button from "react-bootstrap/esm/Button";
 
 
 const Login = () => {
@@ -19,7 +23,11 @@ const Login = () => {
         
         localStorage.setItem("email", email);
         // Redirect to home.
-        navigate("/");
+        navigate("/employees");
+    }
+
+    const handleSignUp = () => {
+        navigate("/signup");
     }
 
     const login = () => {
@@ -32,27 +40,49 @@ const Login = () => {
     }
 
     return (
-        <form onSubmit={e => {handleSubmit(e)}}>
-            <label>Email:
-                <input 
-                type="text"
-                name="email"
-                value={email}
-                onChange={item => setEmail(item.target.value)}
-                />
-            </label>
+        <Form className="login-form" onSubmit={handleSubmit}>
+            <div className="form-hdr">
+                <h3>Login</h3>
+                <hr />
+            </div>
 
-            <label>Password:
-                <input 
-                type="text"
-                name="password"
-                value={password}
-                onChange={item => setPassword(item.target.value)}
-                />
-            </label>
+            <Row>
+                <Col>
+                    <Form.Group className="mb-3 text-input">
+                        <Form.Label>Email</Form.Label>
+                        <Form.Control
+                        type="text"
+                        placeholder="Enter your email..."
+                        value={email}
+                        onChange={item => {setEmail(item.target.value)}}
+                        />
+                    </Form.Group>
+                </Col>
+            </Row>
 
-            <input type="submit" value="Login" />
-        </form>
+            <Row>
+                <Col>
+                    <Form.Group className="mb-3 text-input">
+                        <Form.Label>Password</Form.Label>
+                        <Form.Control
+                        type="password"
+                        placeholder="Enter your password..."
+                        value={password}
+                        onChange={item => {setPassword(item.target.value)}}
+                        />
+                    </Form.Group>
+                </Col>
+            </Row>
+
+            <div className="form-ftr">
+                <Button type="submit" className="footer-btn" variant="success">Login</Button>
+            </div>
+
+            <div className="other-option-ftr">
+                <p>Don't have an account? Sign up now!</p>
+                <Button onClick={handleSignUp} className="footer-btn" variant="warning">Sign Up</Button>
+            </div>
+        </Form>
     );
 }
 

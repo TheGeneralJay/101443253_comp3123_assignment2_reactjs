@@ -1,6 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Form from "react-bootstrap/Form";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
+import Button from "react-bootstrap/esm/Button";
 
 const Signup = () => {
     const [username, setUsername] = useState("");
@@ -12,8 +16,10 @@ const Signup = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
         signup();
+    }    
+
+    const handleLogin = () => {
         navigate("/login");
     }
 
@@ -24,40 +30,75 @@ const Signup = () => {
             "password": password
         }
 
-        axios.post("/api/v1/user/signup", user);
-    }
+        axios.post("/api/v1/user/signup", user, {
+            validateStatus: function (status) {
+                return status < 500;
+            }
+        }).then(res => {
+            // Axios defaults errors beyond the 200 range, so fix that and handle for invalid input
+            // to match the status code sent by backend.
+            if (res.status !== 400) {
+                handleLogin();
+            }
+        });
+    }    
 
     return (
-        <form onSubmit={e => {handleSubmit(e)}}>
-            <label>Username:
-                <input 
-                type="text"
-                name="username"
-                value={username}
-                onChange={item => setUsername(item.target.value)}
-                />
-            </label>
+        <Form onSubmit={handleSubmit}>
+            <div className="form-hdr">
+                <h3>Sign Up</h3>
+                <hr />
+            </div>
 
-            <label>Email:
-                <input 
-                type="text"
-                name="email"
-                value={email}
-                onChange={item => setEmail(item.target.value)}
-                />
-            </label>
+            <Row>
+                <Col>
+                    <Form.Group className="mb-3 text-input">
+                        <Form.Label>Username</Form.Label>
+                        <Form.Control
+                        type="text"
+                        placeholder="Enter your username..."
+                        value={username}
+                        onChange={item => {setUsername(item.target.value)}}
+                        />
+                    </Form.Group>
+                </Col>
 
-            <label>Password:
-                <input 
-                type="text"
-                name="password"
-                value={password}
-                onChange={item => setPassword(item.target.value)}
-                />
-            </label>
+                <Col>
+                    <Form.Group className="mb-3 text-input">
+                        <Form.Label>Email</Form.Label>
+                        <Form.Control
+                        type="text"
+                        placeholder="Enter your email..."
+                        value={email}
+                        onChange={item => {setEmail(item.target.value)}}
+                        />
+                    </Form.Group>
+                </Col>
+            </Row>
 
-            <input type="submit" value="Sign Up" />
-        </form>
+            <Row>
+                <Col>
+                    <Form.Group className="mb-3 text-input">
+                        <Form.Label>Password</Form.Label>
+                        <Form.Control
+                        type="password"
+                        placeholder="Enter your password..."
+                        value={password}
+                        onChange={item => {setPassword(item.target.value)}}
+                        />
+                    </Form.Group>
+                </Col>
+            </Row>
+
+            <div className="form-ftr">
+                <Button type="submit" className="footer-btn" variant="success">Sign Up</Button>
+            </div>
+
+            <div className="other-option-ftr">
+                <p>Already have an account? Login now!</p>
+                <Button onClick={handleLogin} className="footer-btn" variant="warning">Login</Button>
+            </div>
+        </Form>
     );
 }
 

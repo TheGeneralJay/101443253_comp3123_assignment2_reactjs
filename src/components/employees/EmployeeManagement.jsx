@@ -23,6 +23,10 @@ const EmployeeManagement = () => {
         });
     }
 
+    const handleGoToHome = () => {
+        navigate("/");
+    }
+
     const handleGoToViewEmployee = (emp) => {
         navigate(`/employees/${emp._id}`, { state: emp });
     }
@@ -70,7 +74,8 @@ const EmployeeManagement = () => {
                     )}
                     <tr className="table-footer">
                         <td colSpan={5}>
-                            <Button className="footer-btn" variant="success" onClick={handleGoToAddEmployee}>Add Employee</Button>
+                            <Button className="footer-btn right-btn" variant="success" onClick={handleGoToAddEmployee}>Add Employee</Button>
+                            <Button className="footer-btn" variant="info" onClick={handleGoToHome}>Home</Button>
                         </td>
                     </tr>
                 </tbody>
