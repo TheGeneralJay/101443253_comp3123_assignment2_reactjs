@@ -3,12 +3,15 @@ import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
+import LoginChecker from "../authentication/LoginChecker";
 
 const DeleteEmployee = () => {
     const navigate = useNavigate();
     // Grab the ID from the state passed through useNavigate() on the list page.
     const {state} = useLocation();
     const emp = state;
+
+    LoginChecker();
 
     // Delete employee.
     const handleDeleteEmployee = () => {

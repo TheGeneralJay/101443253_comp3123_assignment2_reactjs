@@ -2,12 +2,15 @@ import React from "react";
 import Button from "react-bootstrap/esm/Button";
 import Table from "react-bootstrap/esm/Table";
 import { useLocation, useNavigate } from "react-router-dom";
+import LoginChecker from "../authentication/LoginChecker";
 
 const ViewEmployee = () => {
     const navigate = useNavigate();
     // Grab the ID from the state passed through useNavigate() on the list page.
     const {state} = useLocation();
     const emp = state;
+
+    LoginChecker();
 
     const handleBack = () => {
         navigate("/employees");

@@ -8,6 +8,7 @@ import Row from "react-bootstrap/Row";
 import DatePicker from "react-date-picker";
 import 'react-date-picker/dist/DatePicker.css';
 import 'react-calendar/dist/Calendar.css';
+import LoginChecker from "../authentication/LoginChecker";
 
 const AddEmployee = () => {
     const [firstName, setFirstName] = useState("");
@@ -18,6 +19,8 @@ const AddEmployee = () => {
     const [dateOfJoining, setDateOfJoining] = useState("");
     const [department, setDepartment] = useState("");
     const navigate = useNavigate();
+
+    LoginChecker();
 
     const handleAddSubmit = (e) => {
         e.preventDefault();
