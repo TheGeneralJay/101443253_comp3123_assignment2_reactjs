@@ -113,3 +113,17 @@ div>hr {
 .emp-btn, .logout-btn {
   margin: 10px;
 }
+
+.search-form {
+  all: unset;
+}
+
+.submit-btn {
+  background-color: #4c5570 !important;
+  border: black !important;
+  width: 10%;
+}
+
+.submit-btn:hover {
+  background-color: #333b42 !important;
+}
