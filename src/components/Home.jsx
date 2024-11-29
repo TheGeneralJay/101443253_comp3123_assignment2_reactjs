@@ -1,32 +1,32 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import LoginChecker from "./authentication/LoginChecker";
+import Button from "react-bootstrap/Button";
 
 const Home = () => {
     const navigate = useNavigate();
     const user = localStorage.getItem("user");
 
     LoginChecker();
-
-    const handleSignupSubmit = () => {
-        navigate("/signup");
-    }
-
-    const handleLoginSubmit = () => {
-        navigate("/login");
-    }
     
     const handleEmpSubmit = () => {
         navigate("/employees");
     }
 
+    const handleLogout = () => {
+        localStorage.clear();
+        navigate("/login");
+    }
+
     return (
-        <div>
-        <h1>Home Page</h1>
-        <h3>Welcome, {user}!</h3>
-        <button onClick={handleSignupSubmit}>Sign Up</button>
-        <button onClick={handleLoginSubmit}>Login</button>
-        <button onClick={handleEmpSubmit}>Employee Management</button>
+        <div className="home">
+            <div className="home-hdr">
+                <h1>Home Page</h1>
+                <h3>Welcome, {user}!</h3>
+            </div>
+            <Button onClick={handleEmpSubmit} className="emp-btn">Employee Management</Button>
+            <br />
+            <Button onClick={handleLogout} variant="secondary" className="logout-btn">Logout</Button>
         </div>
     );
 }

@@ -97,3 +97,19 @@ div>hr {
 .other-option-ftr > p {
   margin: 10px;
 }
+
+.home {
+  text-align: center;
+  color: white;
+  width: 60%;
+  margin: 10% auto;
+  background-color: #2c3034;
+}
+
+.home-hdr {
+  background-color: #212529
+}
+
+.emp-btn, .logout-btn {
+  margin: 10px;
+}
