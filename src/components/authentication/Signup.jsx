@@ -26,7 +26,7 @@ const Signup = () => {
     }    
 
     const handleLogin = () => {
-        navigate("/login");
+        navigate("/");
     }
 
     const signup = () => {

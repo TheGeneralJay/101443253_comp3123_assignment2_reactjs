@@ -127,3 +127,17 @@ div>hr {
 .submit-btn:hover {
   background-color: #333b42 !important;
 }
+
+.header {
+  text-align: right;
+  background-color: #333b42;
+}
+
+.logout-btn {
+  border: black !important;
+  background-color: #4c5570 !important;
+}
+
+.logout-btn:hover {
+  background-color: #6c8294 !important
+}

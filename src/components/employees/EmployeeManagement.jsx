@@ -49,10 +49,6 @@ const EmployeeManagement = () => {
         }
     }
 
-    const handleGoToHome = () => {
-        navigate("/");
-    }
-
     const handleGoToViewEmployee = (emp) => {
         navigate(`/employees/${emp._id}`, { state: emp });
     }
@@ -70,9 +66,6 @@ const EmployeeManagement = () => {
     }
 
     return (
-        <>
-
-
             <Table striped bordered hover variant="dark" className="emp-list">
                 <thead>
                     <tr>
@@ -101,8 +94,8 @@ const EmployeeManagement = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {(!isSearch) ? employees.map((emp) => 
-                        <tr>
+                    {(!isSearch) ? employees.map((emp, index) => 
+                        <tr key={index}>
                             <td className="emp-info">{emp._id}</td>
                             <td className="emp-info">{emp.first_name} {emp.last_name}</td>
                             <td className="emp-info">{emp.email}</td>
@@ -113,8 +106,8 @@ const EmployeeManagement = () => {
                                 <Button className="admin-btn" variant="danger" onClick={() => handleGoToDeleteEmployee(emp)}>Delete Employee</Button>
                             </td>
                         </tr>
-                    ) : searchedResults.map((emp) => 
-                        <tr>
+                    ) : searchedResults.map((emp, index) => 
+                        <tr key={index}>
                             <td className="emp-info">{emp._id}</td>
                             <td className="emp-info">{emp.first_name} {emp.last_name}</td>
                             <td className="emp-info">{emp.email}</td>
@@ -128,12 +121,10 @@ const EmployeeManagement = () => {
                     <tr className="table-footer">
                         <td colSpan={5}>
                             <Button className="footer-btn right-btn" variant="success" onClick={handleGoToAddEmployee}>Add Employee</Button>
-                            <Button className="footer-btn" variant="info" onClick={handleGoToHome}>Home</Button>
                         </td>
                     </tr>
                 </tbody>
             </Table>
-        </>
     );
 }
 

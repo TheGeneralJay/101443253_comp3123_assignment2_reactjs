@@ -1,7 +1,6 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Login from "./components/authentication/Login";
-import Home from "./components/Home";
 import Signup from "./components/authentication/Signup";
 import EmployeeManagement from "./components/employees/EmployeeManagement";
 import DeleteEmployee from "./components/employees/DeleteEmployee";
@@ -10,13 +9,14 @@ import ViewEmployee from "./components/employees/ViewEmployee";
 import UpdateEmployee from "./components/employees/UpdateEmployee";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Header from "./components/Header";
 
 const App = () => {
   return (
     <div>
+      <Header />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/employees" element={<EmployeeManagement />} />
         <Route path="/employees/delete/:id" element={<DeleteEmployee />} />

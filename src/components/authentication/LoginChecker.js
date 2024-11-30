@@ -34,6 +34,6 @@ export default function LoginChecker() {
   };
 
   const goToLogin = () => {
-    navigate("/login");
+    navigate("/");
   };
 }
