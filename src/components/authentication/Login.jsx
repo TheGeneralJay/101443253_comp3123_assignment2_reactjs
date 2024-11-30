@@ -1,15 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/esm/Button";
+import ERROR_CODES from "./errors/ErrorCodes";
 
 
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+
+    useEffect(() => {
+        document.title = "Management Tools | Login";
+    });
 
     // Navigator.
     const navigate = useNavigate();
@@ -21,9 +26,9 @@ const Login = () => {
 
         login();
         
-        localStorage.setItem("email", email);
+
         // Redirect to home.
-        navigate("/employees");
+
     }
 
     const handleSignUp = () => {
@@ -36,7 +41,29 @@ const Login = () => {
             "password": password
         }
 
-        axios.post("/api/v1/user/login", user);
+        axios.post("/api/v1/user/login", user, {
+            validateStatus: function (status) {
+                return status < 500;
+            }
+        }).then(res => {
+            // Axios defaults errors beyond the 200 range, so fix that and handle for invalid input
+            // to match the status code sent by backend.
+            if (res.status !== 200) {
+                if (res.status === ERROR_CODES.INCORRECT_EMAIL) {
+                    alert("Incorrect Email! Please try again!");
+                    setEmail("");
+                    setPassword("");
+                } else if (res.status === ERROR_CODES.INCORRECT_PASSWORD) {
+                    alert("Incorrect Password! Please try again!");
+                    setPassword("");
+                } else {
+                    alert("An error has occurred. Please try again later.");
+                }
+            } else {
+                localStorage.setItem("email", email);
+                navigate("/employees");
+            }
+        });
     }
 
     return (
@@ -52,6 +79,7 @@ const Login = () => {
                         <Form.Label>Email</Form.Label>
                         <Form.Control
                         type="text"
+                        required
                         placeholder="Enter your email..."
                         value={email}
                         onChange={item => {setEmail(item.target.value)}}
@@ -66,6 +94,7 @@ const Login = () => {
                         <Form.Label>Password</Form.Label>
                         <Form.Control
                         type="password"
+                        required
                         placeholder="Enter your password..."
                         value={password}
                         onChange={item => {setPassword(item.target.value)}}
@@ -79,8 +108,9 @@ const Login = () => {
             </div>
 
             <div className="other-option-ftr">
-                <p>Don't have an account? Sign up now!</p>
-                <Button onClick={handleSignUp} className="footer-btn" variant="warning">Sign Up</Button>
+                <p>Don't have an account?
+                    <Button onClick={handleSignUp} className="footer-btn" variant="warning">Register Now!</Button>
+                </p>
             </div>
         </Form>
     );

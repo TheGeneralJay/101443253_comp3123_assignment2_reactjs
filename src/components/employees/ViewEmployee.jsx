@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Button from "react-bootstrap/esm/Button";
 import Table from "react-bootstrap/esm/Table";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -9,6 +9,10 @@ const ViewEmployee = () => {
     // Grab the ID from the state passed through useNavigate() on the list page.
     const {state} = useLocation();
     const emp = state;
+
+    useEffect(() => {
+        document.title = "Management Tools | View Employee";
+    });
 
     LoginChecker();
 

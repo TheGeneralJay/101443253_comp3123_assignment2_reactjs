@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import LoginChecker from "./authentication/LoginChecker";
 import Button from "react-bootstrap/Button";
@@ -6,6 +6,10 @@ import Button from "react-bootstrap/Button";
 const Home = () => {
     const navigate = useNavigate();
     const user = localStorage.getItem("user");
+
+    useEffect(() => {
+        document.title = "Management Tools | Home Page";
+    });
 
     LoginChecker();
     

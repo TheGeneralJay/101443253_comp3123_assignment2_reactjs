@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -10,6 +10,10 @@ const DeleteEmployee = () => {
     // Grab the ID from the state passed through useNavigate() on the list page.
     const {state} = useLocation();
     const emp = state;
+
+    useEffect(() => {
+        document.title = "Management Tools | Delete Employee";
+    });
 
     LoginChecker();
 

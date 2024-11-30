@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/esm/Button";
@@ -22,6 +22,10 @@ const UpdateEmployee = () => {
     const [dateOfJoining, setDateOfJoining] = useState(emp.date_of_joining);
     const [department, setDepartment] = useState(emp.department);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        document.title = "Management Tools | Update Employee";
+    });
 
     LoginChecker();
 

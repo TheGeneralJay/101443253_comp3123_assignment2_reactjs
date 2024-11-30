@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Form from "react-bootstrap/Form";
@@ -10,6 +10,10 @@ const Signup = () => {
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+
+    useEffect(() => {
+        document.title = "Management Tools | Register";
+    });
 
     // Navigator.
     const navigate = useNavigate();
@@ -46,7 +50,7 @@ const Signup = () => {
     return (
         <Form onSubmit={handleSubmit}>
             <div className="form-hdr">
-                <h3>Sign Up</h3>
+                <h3>Register</h3>
                 <hr />
             </div>
 
@@ -95,8 +99,9 @@ const Signup = () => {
             </div>
 
             <div className="other-option-ftr">
-                <p>Already have an account? Login now!</p>
-                <Button onClick={handleLogin} className="footer-btn" variant="warning">Login</Button>
+                <p>Already have an account?
+                    <Button onClick={handleLogin} className="footer-btn" variant="warning">Login Now!</Button>
+                </p>
             </div>
         </Form>
     );

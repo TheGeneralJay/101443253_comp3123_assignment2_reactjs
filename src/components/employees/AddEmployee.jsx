@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/esm/Button";
@@ -19,6 +19,10 @@ const AddEmployee = () => {
     const [dateOfJoining, setDateOfJoining] = useState("");
     const [department, setDepartment] = useState("");
     const navigate = useNavigate();
+
+    useEffect(() => {
+        document.title = "Management Tools | Add Employee";
+    });
 
     LoginChecker();
 

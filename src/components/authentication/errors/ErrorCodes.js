@@ -1,0 +1,6 @@
+const ERROR_CODES = {
+  INCORRECT_EMAIL: 490,
+  INCORRECT_PASSWORD: 491,
+};
+
+export default ERROR_CODES;

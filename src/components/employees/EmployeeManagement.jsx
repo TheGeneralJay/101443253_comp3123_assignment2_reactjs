@@ -15,6 +15,7 @@ const EmployeeManagement = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
+        document.title = "Management Tools | Employees";
         if (criteria === "") {
             getEmployees();
         }
