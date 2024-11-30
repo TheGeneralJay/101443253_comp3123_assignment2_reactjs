@@ -10,6 +10,7 @@ const Signup = () => {
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [repeatPassword, setRepeatPassword] = useState("");
 
     useEffect(() => {
         document.title = "Management Tools | Register";
@@ -28,23 +29,30 @@ const Signup = () => {
     }
 
     const signup = () => {
-        let user = {
-            "username": username,
-            "email": email,
-            "password": password
+        // Check if both passwords match.
+        if (password !== repeatPassword) {
+            alert("The passwords you entered do not match!");
+            setPassword("");
+            setRepeatPassword("");
+        } else {
+            let user = {
+                "username": username,
+                "email": email,
+                "password": password
+            }
+    
+            axios.post("/api/v1/user/signup", user, {
+                validateStatus: function (status) {
+                    return status < 500;
+                }
+            }).then(res => {
+                // Axios defaults errors beyond the 200 range, so fix that and handle for invalid input
+                // to match the status code sent by backend.
+                if (res.status !== 400) {
+                    handleLogin();
+                }
+            });
         }
-
-        axios.post("/api/v1/user/signup", user, {
-            validateStatus: function (status) {
-                return status < 500;
-            }
-        }).then(res => {
-            // Axios defaults errors beyond the 200 range, so fix that and handle for invalid input
-            // to match the status code sent by backend.
-            if (res.status !== 400) {
-                handleLogin();
-            }
-        });
     }    
 
     return (
@@ -60,6 +68,7 @@ const Signup = () => {
                         <Form.Label>Username</Form.Label>
                         <Form.Control
                         type="text"
+                        required
                         placeholder="Enter your username..."
                         value={username}
                         onChange={item => {setUsername(item.target.value)}}
@@ -72,6 +81,7 @@ const Signup = () => {
                         <Form.Label>Email</Form.Label>
                         <Form.Control
                         type="text"
+                        required
                         placeholder="Enter your email..."
                         value={email}
                         onChange={item => {setEmail(item.target.value)}}
@@ -86,9 +96,25 @@ const Signup = () => {
                         <Form.Label>Password</Form.Label>
                         <Form.Control
                         type="password"
+                        required
                         placeholder="Enter your password..."
                         value={password}
                         onChange={item => {setPassword(item.target.value)}}
+                        />
+                    </Form.Group>
+                </Col>
+            </Row>
+
+            <Row>
+                <Col>
+                    <Form.Group className="mb-3 text-input">
+                        <Form.Label>Re-enter Password</Form.Label>
+                        <Form.Control
+                        type="password"
+                        required
+                        placeholder="Enter your password..."
+                        value={repeatPassword}
+                        onChange={item => {setRepeatPassword(item.target.value)}}
                         />
                     </Form.Group>
                 </Col>
