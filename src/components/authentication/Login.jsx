@@ -6,6 +6,7 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/esm/Button";
 import ERROR_CODES from "./errors/ErrorCodes";
+import API_URLS from "../constants/ApiUrls";
 
 
 const Login = () => {
@@ -23,12 +24,7 @@ const Login = () => {
         e.preventDefault();
         // Remove existing localStorage.
         localStorage.clear();
-
         login();
-        
-
-        // Redirect to home.
-
     }
 
     const handleSignUp = () => {
@@ -41,7 +37,7 @@ const Login = () => {
             "password": password
         }
 
-        axios.post("/api/v1/user/login", user, {
+        axios.post(API_URLS.LOGIN, user, {
             validateStatus: function (status) {
                 return status < 500;
             }

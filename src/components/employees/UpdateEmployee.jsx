@@ -9,6 +9,7 @@ import DatePicker from "react-date-picker";
 import 'react-date-picker/dist/DatePicker.css';
 import 'react-calendar/dist/Calendar.css';
 import LoginChecker from "../authentication/LoginChecker";
+import API_URLS from "../constants/ApiUrls";
 
 const UpdateEmployee = () => {
     const {state} = useLocation();
@@ -46,7 +47,7 @@ const UpdateEmployee = () => {
             "department": department
         }
 
-        axios.put(`/api/v1/emp/employees/${emp._id}`, employee);
+        axios.put(`${API_URLS.EMPLOYEE}/${emp._id}`, employee);
     }
 
     const handleBack = () => {

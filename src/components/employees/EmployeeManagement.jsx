@@ -6,6 +6,7 @@ import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import { useNavigate } from "react-router-dom";
 import LoginChecker from "../authentication/LoginChecker";
+import API_URLS from "../constants/ApiUrls";
 
 const EmployeeManagement = () => {
     const [employees, setEmployees] = useState([{}]);
@@ -25,7 +26,7 @@ const EmployeeManagement = () => {
 
     // Grab employees from the database.
     const getEmployees = async () => {
-        await axios.get("/api/v1/emp/employees")
+        await axios.get(API_URLS.EMPLOYEE)
         .then(res => {
             setIsSearch(false);
             setEmployees(res.data);
@@ -34,7 +35,7 @@ const EmployeeManagement = () => {
 
     // Grab employees if the user is trying to search.
     const getSearchEmployees = async () => {
-        await axios.get(`/api/v1/emp/employees/search/${criteria}`)
+        await axios.get(`${API_URLS.EMPLOYEE_SEARCH}${criteria}`)
         .then(res => {
             setIsSearch(true);
             setSearchedResults(res.data);

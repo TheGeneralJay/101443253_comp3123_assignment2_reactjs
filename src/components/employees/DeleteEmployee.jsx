@@ -4,6 +4,7 @@ import Button from "react-bootstrap/Button";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import LoginChecker from "../authentication/LoginChecker";
+import API_URLS from "../constants/ApiUrls";
 
 const DeleteEmployee = () => {
     const navigate = useNavigate();
@@ -19,7 +20,7 @@ const DeleteEmployee = () => {
 
     // Delete employee.
     const handleDeleteEmployee = () => {
-        axios.delete(`/api/v1/emp/employees/?id=${emp._id}`);
+        axios.delete(`${API_URLS.EMPLOYEE}/?id=${emp._id}`);
         handleBack();
     }
 

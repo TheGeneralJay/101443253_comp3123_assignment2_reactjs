@@ -5,6 +5,7 @@ import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/esm/Button";
+import API_URLS from "../constants/ApiUrls";
 
 const Signup = () => {
     const [username, setUsername] = useState("");
@@ -41,7 +42,7 @@ const Signup = () => {
                 "password": password
             }
     
-            axios.post("/api/v1/user/signup", user, {
+            axios.post(API_URLS.SIGNUP, user, {
                 validateStatus: function (status) {
                     return status < 500;
                 }

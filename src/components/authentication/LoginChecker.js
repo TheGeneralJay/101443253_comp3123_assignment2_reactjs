@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import API_URLS from "../constants/ApiUrls";
 
 export default function LoginChecker() {
   const navigate = useNavigate();
@@ -20,7 +21,7 @@ export default function LoginChecker() {
 
     try {
       // Ensure the email is within the users database.
-      axios.get(`/api/v1/user/login/${email}`).then((res) => {
+      axios.get(`${API_URLS.LOGIN}/${email}`).then((res) => {
         if (res.data.email !== email) {
           // If the email does not match the stored variable, redirect to the login page.
           goToLogin();

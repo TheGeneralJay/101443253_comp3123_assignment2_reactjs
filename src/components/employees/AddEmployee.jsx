@@ -9,6 +9,7 @@ import DatePicker from "react-date-picker";
 import 'react-date-picker/dist/DatePicker.css';
 import 'react-calendar/dist/Calendar.css';
 import LoginChecker from "../authentication/LoginChecker";
+import API_URLS from "../constants/ApiUrls";
 
 const AddEmployee = () => {
     const [firstName, setFirstName] = useState("");
@@ -43,7 +44,7 @@ const AddEmployee = () => {
             "department": department
         }
 
-        axios.post("/api/v1/emp/employees", employee);
+        axios.post(API_URLS.EMPLOYEE, employee);
     }
 
     const handleBack = () => {
